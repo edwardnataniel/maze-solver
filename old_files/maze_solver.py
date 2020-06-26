@@ -83,6 +83,7 @@ while(i < maze_numrows):
 		j += 1
 	i += 1
 
+
 #dictionary for heuristic values
 heuristics = {}
 i = 0
@@ -93,6 +94,10 @@ while(i < maze_numrows):
 		heuristics[str(i) + " " + str(j)] = val
 		j = j + 1
 	i = i + 1
+
+import json
+f = open('heuristics.txt', 'w')
+f.write(json.dumps(heuristics))
 
 # node
 class Node:
