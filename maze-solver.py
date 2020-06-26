@@ -102,27 +102,22 @@ class maze:
                 if (cell not in explored_coords):
                     c_min = curr_min.coord.split()
                     exp = cell.split()
-
                     # movement = "right"
                     if (int(exp[0]) == int(c_min[0])) and (int(exp[1]) == int(c_min[1]) + 1):
                         step_cost = self.cost_right
-
                     # movement = "left"
                     if (int(exp[0]) == int(c_min[0])) and (int(exp[1]) == int(c_min[1]) - 1):
                         step_cost = self.cost_left
-
                     # movement = "up"
                     if (int(exp[0]) == int(c_min[0]) - 1) and (int(exp[1]) == int(c_min[1])):
                         step_cost = self.cost_up
-
                     # movement = "down"
                     if (int(exp[0]) == int(c_min[0]) + 1) and (int(exp[1]) == int(c_min[1])):
                         step_cost = self.cost_down
-
                     # movement = "diagonal"
                     if (int(exp[0]) != int(c_min[0])) and (int(exp[1]) != int(c_min[1])):
                         step_cost = self.cost_diagonal
-
+                        
                     # every non-expanded node adjacent to min is added to the open list
                     if algorithm == 'greedy':
                         f_n = self.heuristics[cell]
