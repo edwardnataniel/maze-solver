@@ -1,3 +1,4 @@
+import os
 class node:
     	def __init__(self, coord, path_cost, f_n, parent):
             self.coord = coord
@@ -53,7 +54,7 @@ class maze:
                     if(i + 1 < self.maze_numrows) and (j + 1 < self.maze_numcols):
                         if(self.paths[i + 1][j + 1] == 0):
                             adjacent_cells.append(str(i + 1) + " " + str(j + 1))
-                    adj_list[str(i) + " " + str(j)] = adjacent_cells                    
+                    adj_list[str(i) + " " + str(j)] = adjacent_cells
         setattr(self, 'adj_list', adj_list)
 
     def compute_heuristics(self):
@@ -117,7 +118,7 @@ class maze:
                     # movement = "diagonal"
                     if (int(exp[0]) != int(c_min[0])) and (int(exp[1]) != int(c_min[1])):
                         step_cost = self.cost_diagonal
-                        
+
                     # every non-expanded node adjacent to min is added to the open list
                     if algorithm == 'greedy':
                         f_n = self.heuristics[cell]
@@ -145,7 +146,7 @@ class maze:
                 path.append(curr_node.coord)
             path.reverse()
             return path
-        else : 
+        else :
             return None
 
 def parse_input(file_object):
@@ -211,15 +212,17 @@ def main():
     """
     Reads an input file and runs the greedy and a-star algorithm.
     """
-    file_object = open("input.txt", "r")
-    maze_object = create_maze(file_object)
-    file_object.close()
+    for file in os.listdir("test_cases/input/"):
+        if file.endswith(".txt"):
+            file_object = open(os.path.join("test_cases/input/", file), "r")
+            maze_object = create_maze(file_object)
+            file_object.close()
 
-    solution_greedy = maze_object.solve_maze('greedy')
-    write_output('greedy.out', solution_greedy)
+            solution_greedy = maze_object.solve_maze('greedy')
+            write_output('test_cases/output_greedy/' + file, solution_greedy)
 
-    solution_astar = maze_object.solve_maze('astar')
-    write_output('astar.out', solution_astar)
+            solution_astar = maze_object.solve_maze('astar')
+            write_output('test_cases/output_astar/' + file, solution_astar)
 
 if __name__ == "__main__":
     main()

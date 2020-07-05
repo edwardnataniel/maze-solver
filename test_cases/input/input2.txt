@@ -1,0 +1,13 @@
+5 5
+0 0 0 0 0
+0 0 1 1 0
+0 1 0 1 0
+0 1 1 0 0
+1 0 0 0 0
+Source: 0 0
+Destination: 4 4
+Up: 2
+Down: 2
+Left: 4
+Right: 4
+Diagonal: 10
